@@ -17,25 +17,27 @@ public class Main {
         int contador = 0;
         do
         { 
-            opcion = Integer.parseInt(JOptionPane.showInputDialog("1.-Insertar al inicio \n2.-Eliminar al inicio \n3.-Insertar al final \n4.-Eliminar al final \n5.-Recorrer \n6.-Recorrer(Recursivo) \n7.-Salir"));
+            try{
+            opcion = Integer.parseInt(JOptionPane.showInputDialog("1.-Insertar al inicio \n2.-Eliminar al inicio \n3.-Insertar al final \n4.-Eliminar al final "
+                    + "                                           \n5.-Recorrer \n6.-Recorrer(Recursivo) \n7.-Insertar antes de x \n8.-Insertar despues de x \n9.-Salir"));
             switch(opcion)
             {
                 case 1:
                 contador++;
-                JOptionPane.showMessageDialog(null,"SE INSERTARON AL INICIO LOS NUMEROS 1 2 3");
                 l.inserta_inicio(1);
                 l.inserta_inicio(2);
-                l.inserta_inicio(3);break;
+                l.inserta_inicio(5);
+                JOptionPane.showMessageDialog(null,"SE INSERTARON ELEMENTOS AL INICIO");break;
                 case 2:
                 contador++;
                 l.elimina_primero();
                 JOptionPane.showMessageDialog(null, "SE HA ELIMINADO EL PRIMER ELEMENTO DE LA LISTA");break;
                 case 3:
                 contador++;
-                JOptionPane.showMessageDialog(null, "SE INSERTARON AL FINAL LOS NUMEROS 1 2 3");
                 l.inserta_final(1);
                 l.inserta_final(2);
-                l.inserta_final(3);break;
+                l.inserta_final(5);
+                JOptionPane.showMessageDialog(null, "SE INSERTARON ELEMENTOS AL FINAL");break;
                 case 4:
                 contador++;
                 l.elimina_ultimo();
@@ -50,7 +52,19 @@ public class Main {
                 System.out.println("\nEJECUCION NUMERO " + contador);
                 l.recorrer_r(l.getInicio());
                 JOptionPane.showMessageDialog(null, "LISTA RECORRIDA DE FORMA RECURSIVA");break;
+                case 7:
+                contador++;
+                l.insertar_antes_X(3,5);
+                JOptionPane.showMessageDialog(null, "SE HA INSERTADO UN ELEMENTO ANTES DE OTRO");break;
+                case 8:
+                contador++;
+                l.inserta_despues_x(4,3);
+                JOptionPane.showMessageDialog(null, "SE HA INSERTADO UN ELEMENTO DESPUES DE OTRO");break;
+             }
+            }catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, "Error");
             }
-        }while(opcion != 7);
+        }while(opcion != 9);
     }
 }
