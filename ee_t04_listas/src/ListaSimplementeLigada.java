@@ -50,47 +50,9 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
         }
     }
     
-    public void recorrer(){//Este metodo recorre la lista ligada
-        Nodo<T> aux = inicio;
-        while(aux != null){
-            System.out.print(aux + "-->");
-            aux = aux.getSiguiente();
-        }
-    }
-    
-    public void recorrer_r(Nodo<T> aux){
-        if(aux != null){
-            System.out.print(aux.getDato());
-            recorrer_r(aux.getSiguiente());
-        }
-    }    
-        
-    public void elimina_primero(){
-        if(inicio != null){
-            Nodo<T> aux = inicio;
-            inicio = aux.getSiguiente();
-            aux.setSiguiente(null);
-        }
-    }
-    
-    public void elimina_ultimo(){
-        if(inicio != null){
-            Nodo<T> aux = inicio;
-            Nodo<T> aux2 = null;
-            while(aux.getSiguiente() != null)
-            {
-                aux2 = aux;
-                aux = aux.getSiguiente();
-            }
-            if(aux2 == null)
-                inicio = null;
-            else
-                aux2.setSiguiente(null);
-        }
-    }
     public void insertar_antes_X(T dato, T referencia) throws LinkedListException {
         if (inicio == null) {
-            throw new LinkedListException("La lista está vacía");
+            throw new LinkedListException("\nLISTA VACIA");
         }
         Nodo<T> Q = inicio;
         Nodo<T> T = null;
@@ -114,13 +76,13 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
                 X.setSiguiente(Q);
             }
         } else {
-            throw new LinkedListException("El dato dado como referencia no está en la lista");
+            throw new LinkedListException("\nEL DATO DADO COMO REFERENCIA NO ESTÁ EN LA LISTA");
         }
     }
     
     public void inserta_despues_x(T dato, T referencia) throws LinkedListException {
         if (inicio == null) {
-            throw new LinkedListException("La lista está vacía");
+            throw new LinkedListException("\nLISTA VACIA");
         }
         Nodo<T> Q = inicio;
         boolean band = false;
@@ -137,15 +99,35 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
             T.setSiguiente(Q.getSiguiente());
             Q.setSiguiente(T);
         } else {
-            throw new LinkedListException("El T dado como referencia no está en la lista");
+            throw new LinkedListException("\nEL T DADO COMO REFERENCIA NO ESTÁ EN LA LISTA");
         }
     }
-          
-    public void borrar_toda_la_lista() {
-        inicio = null;
+    
+    public void elimina_primero(){
+        if(inicio != null){
+            Nodo<T> aux = inicio;
+            inicio = aux.getSiguiente();
+            aux.setSiguiente(null);
+        }
     }
     
-    public /*T*/void elimina_elemento(T dato)
+    public void elimina_ultimo(){
+        if(inicio != null){
+            Nodo<T> aux = inicio;
+            Nodo<T> aux2 = null;
+            while(aux.getSiguiente() != null)
+            {
+                aux2 = aux;
+                aux = aux.getSiguiente();
+            }
+            if(aux2 == null)
+                inicio = null;
+            else
+                aux2.setSiguiente(null);
+        }
+    }
+    
+    public void elimina_elemento(T dato)
     {
         Nodo<T> T = new Nodo<T>();
         Nodo<T> Q = inicio;
@@ -178,7 +160,7 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
         Nodo<T> R = new Nodo<T>();
         Nodo<T> I = inicio;
         if(I.getDato().equals(dato)){
-            System.out.println("NO EXISTE UN NODO QUE PRESEDA AL QUE CONTIENE X");
+            System.out.println("\nNO EXISTE UN NODO QUE PRESEDA AL QUE CONTIENE X");
         }else{
             Q = inicio;
             T = inicio;
@@ -194,7 +176,7 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
             }
         }
         if(bandera == false){
-            System.out.println("EL ELEMENTO NO SE ENCUENTRA EN LA LISTA");
+            System.out.println("\nEL ELEMENTO NO SE ENCUENTRA EN LA LISTA");
         }else{
             if(I.getSiguiente() == Q){
                 inicio = Q;
@@ -228,5 +210,49 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
         }else{
             System.out.println("\nEL ELEMENTO NO SE ENCUENTRA EN LA LISTA");
         }
+    }
+    
+    public void recorrer(){//Este metodo recorre la lista ligada
+        Nodo<T> aux = inicio;
+        while(aux != null){
+            System.out.print(aux + "-->");
+            aux = aux.getSiguiente();
+        }
+    }
+    
+    public void recorrer_r(Nodo<T> aux){
+        if(aux != null){
+            System.out.print(aux.getDato());
+            recorrer_r(aux.getSiguiente());
+        }
+    }
+    
+    public void insertar_Ordenado(Comparable dato)
+    {
+        Nodo aux = new Nodo< >(dato);
+     if(inicio == null)
+     {
+        inicio = aux;
+     }else
+     {
+        Nodo aux2 = inicio;
+        Nodo ant = null;
+       while (aux2.getSiguiente() != null && dato.compareTo(aux2.getDato()) >= 0)
+      {
+         ant = aux2;
+         aux2 = aux2.getSiguiente();
+      }
+         if(dato.compareTo(aux2.getDato()) >= 0) {
+         aux2.setSiguiente(aux);
+      }else if(ant == null)
+      {
+         aux.setSiguiente(aux2);
+         inicio=aux;
+      }else
+      {   
+         aux.setSiguiente(aux2);
+         ant.setSiguiente(aux);
+      }   
+     }
     }
 }
