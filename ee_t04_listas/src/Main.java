@@ -20,7 +20,7 @@ public class Main {
             try{
             opcion = Integer.parseInt(JOptionPane.showInputDialog("1.-Insertar al inicio \n2.-Insertar al final \n3.-Insertar antes de X \n4.-Insertar despues de X "
                     + "\n5.-Eliminar primero \n6.-Eliminar ultimo \n7.-Eliminar elemento \n8.-Eliminar antes \n9.-Busca desordenado \n10.-Busca recursivo"
-                    + "\n11.-Recorre recursivo \n12.-Recorre iterativo \n13.-Insertar ordenado \n14.-Salir"));
+                    + "\n11.-Recorre recursivo \n12.-Recorre iterativo \n13.-Insertar ordenado \n14.-Obtener dato en posicion \n15.-Salir"));
             switch(opcion)
             {
                 case 1:
@@ -76,12 +76,14 @@ public class Main {
                 case 13:
                 l.insertar_Ordenado(4);break;
                 case 14:
+                System.out.println("EL DATO EN LA POSICION INDICADA ES " + l.obtenerDatoEnPosicion(3));break;
+                case 15:
                 JOptionPane.showMessageDialog(null, "HASTA LUEGO !!!");break;
              }
             }catch(Exception e)
             {
                 JOptionPane.showMessageDialog(null, "Error");
             }
-        }while(opcion != 14);
+        }while(opcion != 15);
     }
 }
