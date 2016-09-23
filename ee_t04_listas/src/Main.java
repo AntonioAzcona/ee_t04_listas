@@ -18,9 +18,9 @@ public class Main {
         do
         { 
             try{
-            opcion = Integer.parseInt(JOptionPane.showInputDialog("1.-Insertar al inicio \n2.-Eliminar al inicio \n3.-Insertar al final \n4.-Eliminar al final "
-                    + "\n5.-Recorrer \n6.-Recorrer(Recursivo) \n7.-Insertar antes de x \n8.-Insertar despues de x \n9.-Borrar toda la lista \n10.-Busca desordenado"
-                    + "\n11.-Busca recursivo \n12.-Eliminar elemento \n13.-Elimina antes \n14.-Salir"));
+            opcion = Integer.parseInt(JOptionPane.showInputDialog("1.-Insertar al inicio \n2.-Insertar al final \n3.-Insertar antes de X \n4.-Insertar despues de X "
+                    + "\n5.-Eliminar primero \n6.-Eliminar ultimo \n7.-Eliminar elemento \n8.-Eliminar antes \n9.-Busca desordenado \n10.-Busca recursivo"
+                    + "\n11.-Recorre recursivo \n12.-Recorre iterativo \n13.-Insertar ordenado \n14.-Salir"));
             switch(opcion)
             {
                 case 1:
@@ -28,55 +28,55 @@ public class Main {
                 l.inserta_inicio(1);
                 l.inserta_inicio(2);
                 l.inserta_inicio(5);
-                JOptionPane.showMessageDialog(null,"SE INSERTARON ELEMENTOS AL INICIO");break;
+                System.out.println("SE INSERTARON ELEMENTOS AL INICIO");break;
                 case 2:
-                contador++;
-                l.elimina_primero();
-                JOptionPane.showMessageDialog(null, "SE HA ELIMINADO EL PRIMER ELEMENTO DE LA LISTA");break;
-                case 3:
                 contador++;
                 l.inserta_final(1);
                 l.inserta_final(2);
                 l.inserta_final(5);
-                JOptionPane.showMessageDialog(null, "SE INSERTARON ELEMENTOS AL FINAL");break;
+                System.out.println("SE INSERTARON ELEMENTOS AL FINAL");break;
+                case 3:
+                contador++;
+                l.insertar_antes_X(3,5);
+                System.out.println("SE HA INSERTADO UN ELEMENTO ANTES DE OTRO");break;
                 case 4:
                 contador++;
-                l.elimina_ultimo();
-                JOptionPane.showMessageDialog(null, "SE HA ELIMINADO EL ULTIMO ELEMENTO DE LA LISTA");break;
+                l.inserta_despues_x(4,3);
+                System.out.println("SE HA INSERTADO UN ELEMENTO DESPUES DE OTRO");break;
                 case 5:
                 contador++;
-                System.out.println("\nEJECUCION NUMERO " + contador);
-                l.recorrer();
-                JOptionPane.showMessageDialog(null, "LISTA RECORRIDA DE FORMA NORMAL");break;
+                l.elimina_primero();
+                System.out.println("SE HA ELIMINADO EL PRIMER ELEMENTO DE LA LISTA");break;
                 case 6:
+                contador++;
+                l.elimina_ultimo();
+                System.out.println("SE HA ELIMINADO EL ULTIMO ELEMENTO DE LA LISTA");break;
+                case 7:
+                contador++;
+                l.elimina_elemento(3);break;
+                case 8:
+                contador++;
+                l.elimina_antes(5);break;
+                case 9:
+                contador++;
+                l.busca_desordenado(4);break;
+                case 10:
+                contador++;
+                l.busca_recursivo(l.getInicio(),3);break;
+                case 11:
                 contador++;
                 System.out.println("\nEJECUCION NUMERO " + contador);
                 l.recorrer_r(l.getInicio());
-                JOptionPane.showMessageDialog(null, "LISTA RECORRIDA DE FORMA RECURSIVA");break;
-                case 7:
-                contador++;
-                l.insertar_antes_X(3,5);
-                JOptionPane.showMessageDialog(null, "SE HA INSERTADO UN ELEMENTO ANTES DE OTRO");break;
-                case 8:
-                contador++;
-                l.inserta_despues_x(4,3);
-                JOptionPane.showMessageDialog(null, "SE HA INSERTADO UN ELEMENTO DESPUES DE OTRO");break;
-                case 9:
-                contador++;
-                l.borrar_toda_la_lista();
-                JOptionPane.showMessageDialog(null, "LISTA BORRADA");break;
-                case 10:
-                contador++;
-                l.busca_desordenado(4);break;
-                case 11:
-                contador++;
-                l.busca_recursivo(l.getInicio(),3);break;
+                System.out.println("\nLISTA RECORRIDA DE FORMA RECURSIVA");break;
                 case 12:
                 contador++;
-                l.elimina_elemento(3);break;
+                System.out.println("\nEJECUCION NUMERO " + contador);
+                l.recorrer();
+                System.out.println("\nLISTA RECORRIDA DE FORMA NORMAL");break;
                 case 13:
-                contador++;
-                l.elimina_antes(5);break;
+                l.insertar_Ordenado(4);break;
+                case 14:
+                JOptionPane.showMessageDialog(null, "HASTA LUEGO !!!");break;
              }
             }catch(Exception e)
             {
