@@ -8,7 +8,7 @@
  *
  * @author Antonio
  */
-public class Nodo<T extends Comparable<T>> {
+public class Nodo<T extends Comparable<T>> implements Comparable<Nodo<T>>{
     private T dato;//Este es el dato que va a contener el nodo
     private Nodo<T> siguiente;//Esta es la liga al siguinte nodo
 
@@ -41,13 +41,12 @@ public class Nodo<T extends Comparable<T>> {
     public String toString(){
         return "[" + dato + "]";
     }
-}
 
-    /*@Override
-    public T compareTo(NodoComparableComparable o){
+    @Override
+    public int compareTo(Nodo<T> o){
         return this.dato.compareTo(o.getDato());
-    }*/
-    
+    }
+}
     
     
     //-1  0  1
