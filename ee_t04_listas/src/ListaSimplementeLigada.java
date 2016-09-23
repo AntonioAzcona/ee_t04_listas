@@ -212,6 +212,23 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
         }
     }
     
+    public Nodo<T> obtenerDatoEnPosicion(Integer posicion){
+        Nodo<T> aux = inicio;
+        int contador = 0;
+        if(posicion < 0){
+            System.out.println("\nLA POSICION INSERTADA NO ES CORRECTA");
+        }else{
+            while(aux != null){
+                if (posicion == contador){
+                    return aux; 
+                }
+                aux = aux.getSiguiente();
+                contador++;
+            }
+        }        
+        return aux;   
+    }
+    
     public void recorrer(){//Este metodo recorre la lista ligada
         Nodo<T> aux = inicio;
         while(aux != null){
@@ -256,3 +273,4 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
      }
     }
 }
+
