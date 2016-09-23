@@ -19,7 +19,8 @@ public class Main {
         { 
             try{
             opcion = Integer.parseInt(JOptionPane.showInputDialog("1.-Insertar al inicio \n2.-Eliminar al inicio \n3.-Insertar al final \n4.-Eliminar al final "
-                    + "                                           \n5.-Recorrer \n6.-Recorrer(Recursivo) \n7.-Insertar antes de x \n8.-Insertar despues de x \n9.-Salir"));
+                    + "\n5.-Recorrer \n6.-Recorrer(Recursivo) \n7.-Insertar antes de x \n8.-Insertar despues de x \n9.-Borrar toda la lista \n10.-Busca desordenado"
+                    + "\n11.-Busca recursivo \n12.-Eliminar elemento \n13.-Elimina antes \n14.-Salir"));
             switch(opcion)
             {
                 case 1:
@@ -60,11 +61,27 @@ public class Main {
                 contador++;
                 l.inserta_despues_x(4,3);
                 JOptionPane.showMessageDialog(null, "SE HA INSERTADO UN ELEMENTO DESPUES DE OTRO");break;
+                case 9:
+                contador++;
+                l.borrar_toda_la_lista();
+                JOptionPane.showMessageDialog(null, "LISTA BORRADA");break;
+                case 10:
+                contador++;
+                l.busca_desordenado(4);break;
+                case 11:
+                contador++;
+                l.busca_recursivo(l.getInicio(),3);break;
+                case 12:
+                contador++;
+                l.elimina_elemento(3);break;
+                case 13:
+                contador++;
+                l.elimina_antes(5);break;
              }
             }catch(Exception e)
             {
                 JOptionPane.showMessageDialog(null, "Error");
             }
-        }while(opcion != 9);
+        }while(opcion != 14);
     }
 }
