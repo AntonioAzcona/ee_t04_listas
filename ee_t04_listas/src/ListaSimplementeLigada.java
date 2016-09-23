@@ -5,8 +5,11 @@
  */
 
 /**
- *
- * @author Antonio
+* @author AZCONA GONZÁLEZ JOSÉ ANTONIO
+ * Materia: Estructura de Datos
+ * Docente: Lic. León Felipe Villavicencio Fernandez
+ * Hora: 10:00 - 11:00
+ * Nombre del trabajo: ee_t04_listas(Tarea04)
  */
 public class ListaSimplementeLigada<T extends Comparable<T>>{
     private Nodo<T> inicio;//Este es el inicio de la lista
@@ -138,13 +141,16 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
         }
     }
           
+    public void borrar_toda_la_lista() {
+        inicio = null;
+    }
+    
     public /*T*/void elimina_elemento(T dato)
     {
         Nodo<T> T = new Nodo<T>();
         Nodo<T> Q = inicio;
         bandera = true;
-        while(Q.getDato().compareTo(dato) == -1 && bandera == true)
-        {
+        while((!Q.getDato().equals(dato)) && (bandera == true)){
             if(Q.getSiguiente() != null)
             {
                 T = Q;
@@ -153,11 +159,9 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
                 bandera = false;
             }
         }
-        if(bandera == false)
-        {
-            System.out.println("EL ELEMENTO CON INFORMACION X NO SE ENCUENTRA EN LA LISTA");
-        }else
-        {
+        if(bandera == false){
+            System.out.println("\nEL ELEMENTO CON INFORMACION X NO SE ENCUENTRA EN LA LISTA");
+        }else{
             if(inicio == Q)
             {
                 inicio = Q.getSiguiente();
@@ -169,21 +173,19 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
     
     public void elimina_antes(T dato)
     {
-        Nodo<T> T = new Nodo<T>();
         Nodo<T> Q = new Nodo<T>();
+        Nodo<T> T = new Nodo<T>();
         Nodo<T> R = new Nodo<T>();
-        if(inicio.getDato().compareTo(dato) == 0)
-        {
-            System.out.println("No existe un nodo que preceda al que contiene x");
+        Nodo<T> I = inicio;
+        if(I.getDato().equals(dato)){
+            System.out.println("NO EXISTE UN NODO QUE PRESEDA AL QUE CONTIENE X");
         }else{
             Q = inicio;
             T = inicio;
             bandera = true;
         }
-        while(Q.getDato().compareTo(dato) == -1 && bandera == true)
-        {
-            if(Q.getSiguiente() != null)
-            {
+        while(!Q.getDato().equals(dato) && bandera == true){
+            if(Q.getSiguiente() != null){
                 R = T;
                 T = Q;
                 Q = Q.getSiguiente();
@@ -191,16 +193,40 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
                 bandera = false;
             }
         }
-        if(bandera == false)
-        {
-            System.out.println("El elemento no se encuentra en la lista");
+        if(bandera == false){
+            System.out.println("EL ELEMENTO NO SE ENCUENTRA EN LA LISTA");
         }else{
-            if(inicio.getSiguiente() == Q)
-            {
+            if(I.getSiguiente() == Q){
                 inicio = Q;
             }else{
                 R.setSiguiente(Q);
             }
+        }
+    }
+    
+    public void busca_desordenado(T dato){
+      Nodo<T> Q = inicio;
+      while((Q != null) && !(Q.getDato().equals(dato))){
+          Q = Q.getSiguiente();
+      }
+      if(Q == null)
+      {
+          System.out.println("\nEL ELEMENTO NO SE ENCUENTRA EN LA LISTA");
+      }else{
+          System.out.println("\nEL ELEMENTO SI SE ENCUENTRA EN LA LISTA");
+      }
+    }
+    
+    public void busca_recursivo(Nodo<T> p, T dato){
+        if(p != null)
+        {
+            if(p.getDato().equals(dato)){
+                System.out.println("\nEL ELEMENTO SE ENCUENTRA EN LA LISTA");
+            }else{
+                busca_recursivo(p.getSiguiente(),dato);
+            }
+        }else{
+            System.out.println("\nEL ELEMENTO NO SE ENCUENTRA EN LA LISTA");
         }
     }
 }
