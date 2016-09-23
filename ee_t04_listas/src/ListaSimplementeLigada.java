@@ -10,6 +10,7 @@
  */
 public class ListaSimplementeLigada<T extends Comparable<T>>{
     private Nodo<T> inicio;//Este es el inicio de la lista
+    boolean bandera;
     
     public ListaSimplementeLigada(){
         inicio = null;//Al principio de la lista está vacia
@@ -22,21 +23,6 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
     public void setInicio(Nodo<T> inicio) {//Este es el set del inicio
         this.inicio = inicio;
     }
-    
-    public void recorrer(){//Este metodo recorre la lista ligada
-        Nodo<T> aux = inicio;
-        while(aux != null){
-            System.out.print(aux + "-->");
-            aux = aux.getSiguiente();
-        }
-    }
-    
-    public void recorrer_r(Nodo<T> aux){
-        if(aux != null){
-            System.out.print(aux.getDato());
-            recorrer_r(aux.getSiguiente());
-        }
-    }    
     
     public void inserta_inicio(T dato){
         Nodo<T> aux = new Nodo<T>(dato);//Aqui ya creo un nodo con un dato mientras dure el metodo
@@ -60,6 +46,21 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
             aux2.setSiguiente(aux);
         }
     }
+    
+    public void recorrer(){//Este metodo recorre la lista ligada
+        Nodo<T> aux = inicio;
+        while(aux != null){
+            System.out.print(aux + "-->");
+            aux = aux.getSiguiente();
+        }
+    }
+    
+    public void recorrer_r(Nodo<T> aux){
+        if(aux != null){
+            System.out.print(aux.getDato());
+            recorrer_r(aux.getSiguiente());
+        }
+    }    
         
     public void elimina_primero(){
         if(inicio != null){
@@ -84,17 +85,122 @@ public class ListaSimplementeLigada<T extends Comparable<T>>{
                 aux2.setSiguiente(null);
         }
     }
+    public void insertar_antes_X(T dato, T referencia) throws LinkedListException {
+        if (inicio == null) {
+            throw new LinkedListException("La lista está vacía");
+        }
+        Nodo<T> Q = inicio;
+        Nodo<T> T = null;
+        boolean band = false;
+        while (!Q.getDato().equals(referencia) && !band) {
+            if (Q.getSiguiente() != null) {
+                T = Q;
+                Q = Q.getSiguiente();
+            } else {
+                band = true;
+            }
+
+        }
+        if (!band) {
+            Nodo<T> X = new Nodo<>(dato);
+            if (Q == inicio) { 
+                X.setSiguiente(inicio);
+                inicio = X;
+            } else {
+                T.setSiguiente(X);
+                X.setSiguiente(Q);
+            }
+        } else {
+            throw new LinkedListException("El dato dado como referencia no está en la lista");
+        }
+    }
     
-    public void insertar_antes_X(T dato)
+    public void inserta_despues_x(T dato, T referencia) throws LinkedListException {
+        if (inicio == null) {
+            throw new LinkedListException("La lista está vacía");
+        }
+        Nodo<T> Q = inicio;
+        boolean band = false;
+        while (!Q.getDato().equals(referencia) && !band) {
+            if (Q.getSiguiente() != null) {
+                Q = Q.getSiguiente();
+            } else {
+                band = true;
+            }
+
+        }
+        if (!band) {
+            Nodo<T> T = new Nodo<>(dato);
+            T.setSiguiente(Q.getSiguiente());
+            Q.setSiguiente(T);
+        } else {
+            throw new LinkedListException("El T dado como referencia no está en la lista");
+        }
+    }
+          
+    public /*T*/void elimina_elemento(T dato)
     {
-        boolean bandera;
-        //P es inicio, Q es un nodo, T es otro nodo
-        Nodo<T> aux = new Nodo<T>(dato);
-            aux = inicio;
-            bandera = true;
-        while(aux.getDato().compareTo(dato) == 0)
+        Nodo<T> T = new Nodo<T>();
+        Nodo<T> Q = inicio;
+        bandera = true;
+        while(Q.getDato().compareTo(dato) == -1 && bandera == true)
         {
-            
+            if(Q.getSiguiente() != null)
+            {
+                T = Q;
+                Q = Q.getSiguiente();
+            }else{
+                bandera = false;
+            }
+        }
+        if(bandera == false)
+        {
+            System.out.println("EL ELEMENTO CON INFORMACION X NO SE ENCUENTRA EN LA LISTA");
+        }else
+        {
+            if(inicio == Q)
+            {
+                inicio = Q.getSiguiente();
+            }else{
+                T.setSiguiente(Q.getSiguiente());
+            }
+        }
+    }
+    
+    public void elimina_antes(T dato)
+    {
+        Nodo<T> T = new Nodo<T>();
+        Nodo<T> Q = new Nodo<T>();
+        Nodo<T> R = new Nodo<T>();
+        if(inicio.getDato().compareTo(dato) == 0)
+        {
+            System.out.println("No existe un nodo que preceda al que contiene x");
+        }else{
+            Q = inicio;
+            T = inicio;
+            bandera = true;
+        }
+        while(Q.getDato().compareTo(dato) == -1 && bandera == true)
+        {
+            if(Q.getSiguiente() != null)
+            {
+                R = T;
+                T = Q;
+                Q = Q.getSiguiente();
+            }else{
+                bandera = false;
+            }
+        }
+        if(bandera == false)
+        {
+            System.out.println("El elemento no se encuentra en la lista");
+        }else{
+            if(inicio.getSiguiente() == Q)
+            {
+                inicio = Q;
+            }else{
+                R.setSiguiente(Q);
+            }
         }
     }
 }
